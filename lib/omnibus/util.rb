@@ -94,7 +94,6 @@ module Omnibus
     #   if execution time exceeds +timeout+
     #
     def shellout!(*args)
-      puts "COMMAND: " + args.to_s
       cmd = shellout(*args)
       cmd.error!
       cmd
