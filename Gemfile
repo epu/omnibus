@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 gemspec
 
-gem 'mixlib-shellout', path: '../mixlib-shellout'
-
 group :docs do
   gem 'yard',          '~> 0.8'
   gem 'redcarpet',     '~> 2.2.2'
