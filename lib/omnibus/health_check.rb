@@ -72,6 +72,7 @@ module Omnibus
       /libmd5\.so/,
       /libmd\.so/,
       /libmp\.so/,
+      /libresolv\.so/,
       /libscf\.so/,
       /libsec\.so/,
       /libsocket\.so/,

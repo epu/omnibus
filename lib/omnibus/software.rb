@@ -491,14 +491,14 @@ module Omnibus
         # for more information
         # use the mapfile if it is configured, otherwise ignore it
         unless Config.solaris_linker_mapfile.nil?
-         mapfile = "-M #{project.files_path}/#{Config.solaris_linker_mapfile}"
+         mapfile = " -M #{project.files_path}/#{Config.solaris_linker_mapfile}"
         end 
 
         # solaris linker can also use LD_OPTIONS, so we throw the kitchen sink against
         # the linker, to find every way to make it use our rpath.
         extra_linker_flags.merge!(
           {
-            "LD_OPTIONS" => "-R#{install_dir}/embedded/lib #{mapfile}"
+            "LD_OPTIONS" => "-R#{install_dir}/embedded/lib#{mapfile}"
           }
         )
       end
