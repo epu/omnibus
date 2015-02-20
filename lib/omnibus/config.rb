@@ -441,7 +441,7 @@ module Omnibus
     #     /PATH/files/my_map_file 
     #
     # @return [String, nil]
-    default(:solaris_linker_mapfile, nil)
+    default(:solaris_linker_mapfile, "files/mapfile/solaris")
 
     # --------------------------------------------------
     # @!endgroup

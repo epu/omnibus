@@ -489,16 +489,17 @@ module Omnibus
         # we need to specify a mapfile that restricts the version of system libraries
         # used. See http://docs.oracle.com/cd/E23824_01/html/819-0690/chapter5-1.html
         # for more information
-        # use the mapfile if it is configured, otherwise ignore it
-        unless Config.solaris_linker_mapfile.nil?
-         mapfile = " -M #{project.files_path}/#{Config.solaris_linker_mapfile}"
-        end 
+        # use the mapfile if it exists, otherwise ignore it
+        ld_options = "-R#{install_dir}/embedded/lib"
+        mapfile_path = File.expand_path(Config.solaris_linker_mapfile, Config.project_root)
+        ld_options  << " -M #{mapfile_path}" if File.exist?(mapfile_path)
 
         # solaris linker can also use LD_OPTIONS, so we throw the kitchen sink against
-        # the linker, to find every way to make it use our rpath.
+        # the linker, to find every way to make it use our rpath. This is also required
+        # to use the aforementioned mapfile.
         extra_linker_flags.merge!(
           {
-            "LD_OPTIONS" => "-R#{install_dir}/embedded/lib#{mapfile}"
+            "LD_OPTIONS" => ld_options
           }
         )
       end
