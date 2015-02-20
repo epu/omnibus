@@ -138,7 +138,8 @@ module Omnibus
               data['platform'] = 'solaris2'
             end
             Config.project_root('/root/project')
-            Config.solaris_linker_mapfile('mapfile/solaris')
+            Config.solaris_linker_mapfile('files/mapfile/solaris')
+            allow(File).to receive(:exist?).and_return(true)
           end
 
           it 'sets LD_OPTIONS correctly' do
